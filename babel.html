@@ -14,22 +14,12 @@
 <h2>{{checkTranslation()}}</h2>
     <div id="babel_window" class="ui-widget-content ui-corner-all">
       <p>
-	<!-- span title="Rhine">Rhenus</span> <span title="river">fluvius</span> <span title="is">est</span -->
 	<span>{{exercises[currentLesson()].text}}</span>
       </p>
       <input class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" type="button" value="Check" />
       <input id="text" class="ui-text ui-widget ui-state-default ui-corner-all" type="text" ng-model="translation"/>
     </div>
-    <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
-      
-	<div ng-repeat="exercise in exercises">
-	  <span class="done-{{exercise.active}}">{{exercise.text}}</span>
-	</div>
-      
+    <div>      
     </div>
   </body>
 </html>
