@@ -1,0 +1,35 @@
+<html ng-app>
+  <head>
+    <script type="text/javascript" src="js/ext/jquery-2.0.3.js"></script> 
+    <link rel="stylesheet" href="js/ext/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <script type="text/javascript" src="js/ext/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script> 
+    <script type="text/javascript" src="js/ext/angular.js"></script> 
+    <script type="text/javascript" src="js/babel-lib.js"></script> 
+    <script type="text/javascript" src="js/babel.js"></script> 
+    <link rel="stylesheet" href="css/babel.css" />
+    <title>Babel</title>
+  </head>
+  <body ng-controller="Babel">
+    <h1>Lesson {{configuration['current_exercise']}}</h1>
+<h2>{{checkTranslation()}}</h2>
+    <div id="babel_window" class="ui-widget-content ui-corner-all">
+      <p>
+	<!-- span title="Rhine">Rhenus</span> <span title="river">fluvius</span> <span title="is">est</span -->
+	<span>{{exercises[currentLesson()].text}}</span>
+      </p>
+      <input class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" type="button" value="Check" />
+      <input id="text" class="ui-text ui-widget ui-state-default ui-corner-all" type="text" ng-model="translation"/>
+    </div>
+    <div>
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1>Hello {{yourName}}!</h1>
+      
+	<div ng-repeat="exercise in exercises">
+	  <span class="done-{{exercise.active}}">{{exercise.text}}</span>
+	</div>
+      
+    </div>
+  </body>
+</html>
