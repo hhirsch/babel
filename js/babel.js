@@ -9,19 +9,30 @@
 
 	$scope.checkTranslation = function() {
 	    var currentExercise = $scope.configuration['current_exercise'] - 1;
-//	    return $scope.exercises[currentExercise].translations;
 	    var translations = $scope.exercises[currentExercise].translations
 	    for (var i in translations)
 	    {
-//		return $scope.translation.toLowerCase();
-//return translations [i];
 		if(translations[i].toLowerCase() == $scope.translation.toLowerCase()){
-		   // return translations [i];
+		    $('#babel_window').css("background-color", "green");
+		    return "Ok";
+		}
+	    }
+	    $('#babel_window').css("background-color", "red");
+	    return "not OK";
+	};
+
+	$scope.testTranslation = function() {
+	    var currentExercise = $scope.configuration['current_exercise'] - 1;
+	    var translations = $scope.exercises[currentExercise].translations
+	    for (var i in translations)
+	    {
+		if(translations[i].toLowerCase() == $scope.translation.toLowerCase()){
 		    return "Ok";
 		}
 	    }
 	    return "not OK";
 	};
+
 
 	$scope.check = function() {
 	    $scope.todos.push({text:$scope.todoText, done:false});

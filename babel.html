@@ -11,12 +11,11 @@
   </head>
   <body ng-controller="Babel">
     <h1>Lesson {{configuration['current_exercise']}}</h1>
-<h2>{{checkTranslation()}}</h2>
     <div id="babel_window" class="ui-widget-content ui-corner-all">
       <p>
 	<span>{{exercises[currentLesson()].text}}</span>
       </p>
-      <input class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" type="button" value="Check" />
+      <input ng-click="checkTranslation()" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" type="button" value="Check" />
       <input id="text" class="ui-text ui-widget ui-state-default ui-corner-all" type="text" ng-model="translation"/>
     </div>
     <div>      
