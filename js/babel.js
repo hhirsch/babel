@@ -1,11 +1,12 @@
     function Babel($scope) {
 	$scope.translation = "";
+	$scope.message = "";
 	$scope.configuration = new Array();
 	$scope.configuration['current_exercise'] =  '1';
 
 	$scope.exercises = new Array(
 	    {text:'Rhenus fluvius est.', translations:new Array('The Rhine is a river.', 'Rhine is a river.')},
-	    {text:'Julia fillia est', translations:new Array('Julia is a girl.', 'Julia is girl.')});
+	    {text:'Julia fillia est.', translations:new Array('Julia is a girl.', 'Julia is girl.')});
 
 	$scope.checkTranslation = function() {
 	    var currentExercise = $scope.configuration['current_exercise'] - 1;
@@ -13,38 +14,28 @@
 	    for (var i in translations)
 	    {
 		if(translations[i].toLowerCase() == $scope.translation.toLowerCase()){
-		    $('#babel_window').css("background-color", "green");
+		    $('#message').css("background-color", "green");
+		    $('#message').html('Correct answer.');
+		    $scope.nextLesson();
 		    return "Ok";
 		}
 	    }
-	    $('#babel_window').css("background-color", "red");
+	    $('#message').css("background-color", "red");
+	    $('#message').html('Wrong answer.');
+	    $scope.nextLesson();
 	    return "not OK";
 	};
 
-	$scope.testTranslation = function() {
-	    var currentExercise = $scope.configuration['current_exercise'] - 1;
-	    var translations = $scope.exercises[currentExercise].translations
-	    for (var i in translations)
-	    {
-		if(translations[i].toLowerCase() == $scope.translation.toLowerCase()){
-		    return "Ok";
-		}
+	$scope.nextLesson = function() {
+	    if($scope.exercises.length > $scope.configuration['current_exercise']){
+		$('#message').css("background-color", "white");
+		$('#text').val('');
+		$scope.configuration['current_exercise']++;
+	    } else {
+		$('#message').html('Session is over.');
 	    }
-	    return "not OK";
 	};
 
-
-	$scope.check = function() {
-	    $scope.todos.push({text:$scope.todoText, done:false});
-	    $scope.todoText = '';
-	};
-	
-
-	$scope.addTodo = function() {
-	    $scope.todos.push({text:$scope.todoText, done:false});
-	    $scope.todoText = '';
-	};
-	
 	$scope.remaining = function() {
 	    var count = 0;
 	    angular.forEach($scope.exercises, function(exercise) {
