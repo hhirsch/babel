@@ -25,7 +25,15 @@ function Babel($scope) {
 
     $scope.exercises = new Array(
 	{text:'Rhenus fluvius est.', translations:new Array('The Rhine is a river.', 'Rhine is a river.')},
-	{text:'Julia fillia est.', translations:new Array('Julia is a girl.', 'Julia is girl.')});
+	{text:'Julia fillia est.', translations:new Array('Julia is a girl.', 'Julia is girl.')},
+	{text:'Julius vir est.', translations:new Array('Julius is a man.', 'Julius is man.')}
+    );
+    
+    var length = $scope.exercises.length;
+    $( "#progressbar" ).progressbar({
+	max: length,
+	value: 0
+    });
 
     $scope.checkTranslation = function() {
 	var currentExercise = $scope.configuration['current_exercise'] - 1;
@@ -50,8 +58,14 @@ function Babel($scope) {
 	if($scope.exercises.length > $scope.configuration['current_exercise']){
 	    $('#message').css("background-color", "white");
 	    $scope.configuration['current_exercise']++;
+	    $( "#progressbar" ).progressbar({
+		value: $scope.configuration['current_exercise']-1
+	    });
 	} else {
 	    $('#message').html('Session is over.');
+	    $( "#progressbar" ).progressbar({
+		value: $scope.configuration['current_exercise']
+	    });
 	}
     };
 
@@ -86,7 +100,6 @@ $(document).ready(function() {
 
     $("#babel_window").center();
     $("#babel_window").fadeIn();
-
 
     $( document ).tooltip({
 	position: {
