@@ -27,9 +27,9 @@
 	};
 
 	$scope.nextLesson = function() {
+	    $('#text').val('');
 	    if($scope.exercises.length > $scope.configuration['current_exercise']){
 		$('#message').css("background-color", "white");
-		$('#text').val('');
 		$scope.configuration['current_exercise']++;
 	    } else {
 		$('#message').html('Session is over.');
